@@ -19,7 +19,7 @@ def listarUser(request):
 @login_required()
 def createUser(request):
     form = userForm(request.POST or None)
-
+        
     if form.is_valid():
         form.save()
         return redirect('listarUser')

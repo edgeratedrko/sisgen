@@ -3,8 +3,33 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, UserManager
 from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.hashers import make_password
 
-# Create your models here.
+class UserManager(BaseUserManager):
+
+    def create_user(self, login=None, password=None):
+        if not login:
+            raise ValueError('Usuários devem possuir um login')
+
+        user = self.model(
+            login=login,
+            password=password
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, login = None, password=None):
+        user = self.create_user(
+            login=login,
+            password=password,
+        )
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+#
+
 class User(AbstractBaseUser):
 
     objects = UserManager()
@@ -19,25 +44,14 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.login
 
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super(User, self).save(*args, **kwargs)
+
+    """
     @property
     def is_admin(self):
         return self.admin
-
-class UserManager(BaseUserManager):
-    def criar_usuario(self, login=None, password=None):
-
-        if not login:
-            raise ValueError('Usuários devem possuir um login')
-
-        user = self.model(login, password)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def criar_admin(self, login, password):
-
-        user = self.criar_usuario(login, password=password,)
-        user.tipoAcesso = True
-        user.save(using=self._db)
-        return user
+    """
+#
 
