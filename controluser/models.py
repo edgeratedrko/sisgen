@@ -15,12 +15,10 @@ class UserManager(BaseUserManager):
             login=login,
             password=password
         )
-
-        user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, login = None, password=None):
+    def create_superuser(self, login=None, password=None):
         user = self.create_user(
             login=login,
             password=password,
@@ -31,7 +29,6 @@ class UserManager(BaseUserManager):
 #
 
 class User(AbstractBaseUser):
-
     objects = UserManager()
     login = models.CharField(max_length=30,default="None", unique=True)
     nome = models.CharField(max_length=100)
@@ -45,7 +42,13 @@ class User(AbstractBaseUser):
         return self.login
 
     def save(self, *args, **kwargs):
-        self.password = make_password(self.password)
+        if "is_crypted" not in self.__dict__:
+            self.password = make_password(self.password)
+            self.is_crypted = True
+        elif not self.is_crypted:
+            self.password = make_password(self.password)
+            self.is_crypted = True
+        
         super(User, self).save(*args, **kwargs)
 
     """
