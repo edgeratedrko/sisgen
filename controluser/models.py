@@ -26,14 +26,14 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
-#
+
 
 class User(AbstractBaseUser):
     objects = UserManager()
-    login = models.CharField(max_length=30,default="None", unique=True)
+    login = models.CharField(max_length=30,default="", unique=True)
     nome = models.CharField(max_length=100)
     cargo = models.CharField(max_length=120)
-    tipoAcesso = models.BooleanField(default=False)
+    ADM = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'login'
     REQUIRED_FIELDS = []
