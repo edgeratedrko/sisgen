@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Agendamento
 from .forms import AgendamentoForm
 from django.contrib.auth.decorators import login_required
+import datetime
 
 @login_required()
 def listAgenda(request):
