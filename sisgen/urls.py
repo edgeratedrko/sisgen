@@ -28,5 +28,6 @@ urlpatterns = [
     path('', include("django.contrib.auth.urls")),
     path('', redirectLogin, name='login'),
     path('home/', TemplateView.as_view(template_name='homepage.html')),
+    path('relatorios/', TemplateView.as_view(template_name='relatorios.html')),
 ]
 
