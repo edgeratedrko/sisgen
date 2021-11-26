@@ -31,7 +31,7 @@
           <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Equipe</th>
+                  <th>Data</th>
                   <th>Nome</th>
                   <th>Endereço</th>
                   <th>Login (Cliente)</th>
@@ -48,7 +48,7 @@
                 <tbody>
                     {% for agendamento in agendamentos %}
                         <tr>
-                            <td>Teste</td>
+                            <td>{{ agendamento.data }}</td>
                             <td>{{ agendamento.nome }}</td>
                             <td>{{ agendamento.endereco }}</td>
                             <td>{{ agendamento.loginCliente }}</td>

@@ -28,6 +28,11 @@
             width: 32%;
             text-align: center;
         }
+
+        .dashboard-box:nth-child(2) {
+            margin-left: 1.5%;
+            margin-right: 1.5%;
+        }
     </style>
 
     <!-- Header -->
@@ -48,7 +53,7 @@
         <div class="container dashboard">
             <div class="col-4 dashboard-box" id="dashboard-new-agendamentos">
                 <h4>Agendamentos em Progresso</h4>
-                <span>0</span>
+                <span>{{ agendamentosDone }}</span>
             </div>
             <div class="col-4 dashboard-box" id="dashboard-slas">
                 <h4>SLAs em Progresso</h4>
@@ -56,7 +61,7 @@
             </div>
             <div class="col-4 dashboard-box" id="dashboard-fimagendamento">
                 <h4>Agendamentos Finalizados</h4>
-                <span>0</span>
+                <span>{{ agendamentosDoing }}</span>
             </div>
         </div>
     </section>

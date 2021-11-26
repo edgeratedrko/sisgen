@@ -39,3 +39,10 @@ def deleteAgendamento(request, id):
         return redirect('listAgenda')
 
     return render(request, 'ag_delete_conf.html', {'agendamento': agendamento})
+
+@login_required()
+def infoDashboard(request):
+    agendamentosDone = Agendamento.objects.filter(isEncerrado='Sim').count()
+    agendamentosDoing = Agendamento.objects.filter(isEncerrado='Não').count()
+
+    return render(request, 'homepage.html', {'agentamentosdone': agendamentosDone, 'agendamentosdoing': agendamentosDoing})
