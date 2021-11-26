@@ -52,17 +52,18 @@
     <section class="content">
         <div class="container dashboard">
             <div class="col-4 dashboard-box" id="dashboard-new-agendamentos">
-                <h4>Agendamentos em Progresso</h4>
-                <span>{{ agendamentosDone }}</span>
+                <h4>Agendamentos Finalizados</h4>
+                <span>{{ agentamentosdone }}</span>
             </div>
             <div class="col-4 dashboard-box" id="dashboard-slas">
                 <h4>SLAs em Progresso</h4>
                 <span>0</span>
             </div>
             <div class="col-4 dashboard-box" id="dashboard-fimagendamento">
-                <h4>Agendamentos Finalizados</h4>
-                <span>{{ agendamentosDoing }}</span>
+                <h4>Agendamentos em Progresso</h4>
+                <span>{{ agendamentosdoing }}</span>
             </div>
         </div>
+        <canvas id="myChart" width="600" height="400"></canvas>
     </section>
 {% endblock %}
