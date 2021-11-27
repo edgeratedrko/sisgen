@@ -63,7 +63,38 @@
                 <h4>Agendamentos em Progresso</h4>
                 <span>{{ agendamentosdoing }}</span>
             </div>
+            <canvas id="myChart" height="20"></canvas>
+            <div class="row-cols-1">
+                    <div class="container dashboard">
+                        <div id="piechart_3d" style="width: 570px; height: 300px;"></div>
+                    </div>
+            </div>
         </div>
-        <canvas id="myChart" width="600" height="400"></canvas>
     </section>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Em aberto', {{ agendamentosdoing }}],
+          ['Encerrados', {{ agentamentosdone }}]
+        ]);
+
+        var options = {
+          title: 'Relação de Agendamentos',
+          is3D: false,
+          backgroundColor: '#343a40',
+          textColor: '#FFFFFF',
+          titleTextStyle: {color:'#FFFFFF'},
+          legendTextStyle: {color: '#FFFFFF'}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
 {% endblock %}

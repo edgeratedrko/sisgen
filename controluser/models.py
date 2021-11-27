@@ -33,7 +33,7 @@ class User(AbstractBaseUser):
     login = models.CharField(max_length=30,default="", unique=True)
     nome = models.CharField(max_length=100)
     cargo = models.CharField(max_length=120)
-    ADM = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'login'
     REQUIRED_FIELDS = []
