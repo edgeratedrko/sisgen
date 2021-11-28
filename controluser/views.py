@@ -46,3 +46,9 @@ def deleteUser(request, id):
         return redirect('listarUser')
 
     return render(request, 'delete_prov.html', {'user': user})
+
+@login_required()
+def returnMyUser(request):
+    
+
+    return render(request,)

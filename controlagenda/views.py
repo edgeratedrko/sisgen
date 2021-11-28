@@ -44,6 +44,6 @@ def deleteAgendamento(request, id):
 def infoDashboard(request):
     agendamentosDone = Agendamento.objects.filter(isEncerrado='Sim').count()
     agendamentosDoing = Agendamento.objects.filter(isEncerrado='Não').count()
-    latestAgs = Agendamento.objects.filter(isEncerrado='Não').order_by('-data')[: 3]
+    latestAgs = Agendamento.objects.filter(isEncerrado='Não').order_by('-data')[: 4]
 
     return render(request, 'homepage.html', {'agentamentosdone': agendamentosDone, 'agendamentosdoing': agendamentosDoing, 'latestags': latestAgs})
