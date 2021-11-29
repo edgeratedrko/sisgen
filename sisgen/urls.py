@@ -30,5 +30,6 @@ urlpatterns = [
     path('', redirectLogin, name='login'),
     path('home/', infoDashboard, name='infoDashboard'),
     path('relatorios/', TemplateView.as_view(template_name='relatorios.html')),
+    path('profile/', TemplateView.as_view(template_name='profile.html')),
 ]
 
