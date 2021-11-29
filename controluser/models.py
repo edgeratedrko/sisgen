@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, UserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.hashers import make_password
+from django.core.validators import RegexValidator
 
 class UserManager(BaseUserManager):
 
@@ -32,6 +33,8 @@ class User(AbstractBaseUser):
     objects = UserManager()
     login = models.CharField(max_length=30,default="", unique=True)
     nome = models.CharField(max_length=100)
+    email = models.EmailField(max_length=120)
+    telefone = models.CharField(max_length=11, validators=[RegexValidator(r'^\d{1,11}$')])
     cargo = models.CharField(max_length=120)
     is_staff = models.BooleanField(default=False)
 

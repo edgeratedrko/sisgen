@@ -47,8 +47,10 @@ def deleteUser(request, id):
 
     return render(request, 'delete_prov.html', {'user': user})
 
-@login_required()
-def returnMyUser(request):
-    
 
-    return render(request,)
+@login_required()
+def returnLogedUser(request):
+    currentUser = request.user
+
+
+    return render(request, 'profile.html', {'currentuser': currentUser})

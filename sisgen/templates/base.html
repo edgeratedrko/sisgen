@@ -66,7 +66,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="../profile" class="d-block">Teste</a>
+          <a href="../profile" class="d-block">{{ user.get_username }}</a>
         </div>
       </div>
 
@@ -91,6 +91,7 @@
               </p>
             </a>
           </li>
+          {% if user.is_staff %}
           <li class="nav-item">
             <a href="../usuarios" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
@@ -99,6 +100,7 @@
               </p>
             </a>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a href="../relatorios" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>

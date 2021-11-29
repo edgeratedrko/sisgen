@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from controluser.views import redirectLogin
 from controlagenda.views import infoDashboard
+from controluser.views import returnLogedUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,6 @@ urlpatterns = [
     path('', redirectLogin, name='login'),
     path('home/', infoDashboard, name='infoDashboard'),
     path('relatorios/', TemplateView.as_view(template_name='relatorios.html')),
-    path('profile/', TemplateView.as_view(template_name='profile.html')),
+    path('profile/', returnLogedUser, name='returnLogedUser'),
 ]
 
