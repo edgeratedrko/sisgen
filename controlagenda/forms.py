@@ -6,3 +6,9 @@ class AgendamentoForm(forms.ModelForm):
         model = Agendamento
         fields = ['nome', 'endereco', 'data', 'loginCliente', 'senhaCliente', 'cadastradoPor', 'informServico', 'solucao', 'valor',
                   'tipoPessoa', 'isEncerrado', 'isReagendado']
+
+class dateAgendamento(forms.ModelForm):
+    datesearch = forms.DateField(label="Pesquisar por Data:",required=False)
+    class Meta:
+        model = Agendamento
+        fields = ['datesearch']

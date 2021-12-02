@@ -18,9 +18,8 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
-from controluser.views import redirectLogin
-from controlagenda.views import infoDashboard
-from controluser.views import returnLogedUser
+from controluser.views import redirectLogin, returnLogedUser
+from controlagenda.views import infoDashboard, searchByDate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +29,7 @@ urlpatterns = [
     path('', include("django.contrib.auth.urls")),
     path('', redirectLogin, name='login'),
     path('home/', infoDashboard, name='infoDashboard'),
-    path('relatorios/', TemplateView.as_view(template_name='relatorios.html')),
+    path('relatorios/', searchByDate, name='searchByDate'),
     path('profile/', returnLogedUser, name='returnLogedUser'),
 ]
 

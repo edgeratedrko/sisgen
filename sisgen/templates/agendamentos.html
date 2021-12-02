@@ -48,7 +48,7 @@
                 <tbody>
                     {% for agendamento in agendamentos %}
                         <tr>
-                            <td>{{ agendamento.data }}</td>
+                            <td>{{ agendamento.data|date:"d/n/o" }}</td>
                             <td>{{ agendamento.nome }}</td>
                             <td>{{ agendamento.endereco }}</td>
                             <td>{{ agendamento.loginCliente }}</td>

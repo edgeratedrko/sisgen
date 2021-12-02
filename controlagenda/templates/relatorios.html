@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Relatórios</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="../home">Home</a></li>
+              <li class="breadcrumb-item active">Relatórios</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form>
+            <div class="input-group">
+                <input name="q" type="date" placeholder="Pesquisar por Data"
+                    class="form-control form-control-lg"/>
+                <div class="input-group-append">
+                    <button class="btn btn-dark btn-sm">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+          <table class="table m-0">
+            <thead>
+            <tr>
+              <th>Data</th>
+              <th>Nome</th>
+              <th>Endereço</th>
+              <th>Valor</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ag in financeiro %}
+            <tr>
+              <td>{{ ag.data|date:"d/n/o" }}</td>
+              <td>{{ ag.nome }}</td>
+              <td>{{ ag.endereco }}</td>
+              <td>{{ ag.valor }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+              <!-- /.card-footer -->
+      <!-- /.card -->
+    </section>
+{% endblock %}

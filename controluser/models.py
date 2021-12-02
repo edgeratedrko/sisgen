@@ -36,7 +36,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=120)
     telefone = models.CharField(max_length=11, validators=[RegexValidator(r'^\d{1,11}$')])
     cargo = models.CharField(max_length=120)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(_("Administrador"),default=False)
 
     USERNAME_FIELD = 'login'
     REQUIRED_FIELDS = []

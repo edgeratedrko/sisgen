@@ -97,7 +97,7 @@
                     <tbody>
                     {% for agendamento in latestags  %}
                     <tr>
-                      <td>{{ agendamento.data }}</td>
+                      <td>{{ agendamento.data|date:"d/n/o" }}</td>
                       <td>{{ agendamento.endereco }}</td>
                       <td>{{ agendamento.nome }}</td>
                       <td>{{ agendamento.cadastradoPor }}</td>

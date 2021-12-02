@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Agendamento
-from .forms import AgendamentoForm
+from .forms import AgendamentoForm, dateAgendamento
 from django.contrib.auth.decorators import login_required
 import datetime
 
@@ -47,3 +47,13 @@ def infoDashboard(request):
     latestAgs = Agendamento.objects.filter(isEncerrado='Não').order_by('-data')[: 4]
 
     return render(request, 'homepage.html', {'agentamentosdone': agendamentosDone, 'agendamentosdoing': agendamentosDoing, 'latestags': latestAgs})
+
+@login_required()
+def searchByDate(request):
+    if 'q' in request.GET:
+        q=request.GET['q']
+        financeiro=Agendamento.objects.filter(data__exact=q)
+    else:
+        financeiro=Agendamento.objects.all()
+
+    return render(request, 'relatorios.html', {'financeiro': financeiro})

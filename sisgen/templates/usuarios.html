@@ -50,8 +50,8 @@
                         <td>{{ usuario.email }}</td>
                         <td>{{ usuario.telefone }}</td>
                         <td>{{ usuario.cargo }}</td>
-                        <td>{{ usuario.is_staff }}</td>
-                        <td>{{ usuario.last_login }}</td>
+                        <td>{% if usuario.is_staff == True %} Administrador {% else %} Usuário {% endif %}</td>
+                        <td>{{ usuario.last_login|date:"d/n/o - G:i" }}</td>
                         <td>
                             <a href="{% url 'updateUser' usuario.id %}" class="text-muted">
                             <i class="fas fa-edit"></i>
