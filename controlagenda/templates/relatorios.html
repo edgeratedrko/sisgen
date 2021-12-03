@@ -23,39 +23,53 @@
     <!-- Main content -->
     <section class="content">
         {% if user.is_staff %}
-        <form>
-            <div class="input-group">
-                <input name="q" type="date" placeholder="Pesquisar por Data"
-                    class="form-control form-control-lg"/>
-                <div class="input-group-append">
-                    <button class="btn btn-dark btn-sm">Pesquisar</button>
+        <div class="card">
+          <div class="card-header">
+            <form>
+                <div class="input-group col-md-3">
+                    <input name="q" type="date" placeholder="Pesquisar por Data"
+                        class="form-control form-control-lg"/>
+                    <div class="input-group-append">
+                        <button class="btn btn-dark btn-sm">Pesquisar</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+          </div>
 
-        <div class="table-responsive">
-          <table class="table m-0">
-            <thead>
-            <tr>
-              <th>Data</th>
-              <th>Nome</th>
-              <th>Endereço</th>
-              <th>Valor</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for ag in financeiro %}
-            <tr>
-              <td>{{ ag.data|date:"d/n/o" }}</td>
-              <td>{{ ag.nome }}</td>
-              <td>{{ ag.endereco }}</td>
-              <td>{{ ag.valor }}</td>
-            </tr>
-            {% endfor %}
-            </tbody>
-           Valor total: R$ {{ somatotal.valor__sum }}
-          </table>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table m-0">
+                <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Nome</th>
+                  <th>Endereço</th>
+                  <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ag in financeiro %}
+                <tr>
+                  <td>{{ ag.data|date:"d/n/o" }}</td>
+                  <td>{{ ag.nome }}</td>
+                  <td>{{ ag.endereco }}</td>
+                  <td>{{ ag.valor }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <hr/>
+            <div class="card text-white bg-success" style="max-width: 12rem;">
+              <div class="card-header">Valor total: R$ {{ somatotal.valor__sum }}</div>
+            </div>
+          </div>
+
+          
+
+          
         </div>
+
               <!-- /.card-footer -->
       <!-- /.card -->
         {% else %}
