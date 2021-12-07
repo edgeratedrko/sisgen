@@ -32,13 +32,14 @@
                 <thead>
                 <tr>
                   <th>Data</th>
-                  <th>Nome</th>
+                  <th>Técnico</th>
                   <th>Endereço</th>
                   <th>Login (Cliente)</th>
                   <th>Senha (Cliente)</th>
                   <th>Tipo de Pessoa</th>
                   <th>Solução Encontrada</th>
                   <th>Valor</th>
+                  <th>Encerramento do SLA</th>
                   <th>Encerrado</th>
                   <th>Necessidade de reagendar</th>
                   <th>Cadastrado por</th>
@@ -56,6 +57,7 @@
                             <td>{{ agendamento.tipoPessoa }}</td>
                             <td>{{ agendamento.informServico }}</td>
                             <td>R$ {{ agendamento.valor }}</td>
+                            <td> {% if agendamento.encSla != null %}{{ agendamento.encSla|date:"d/n/o - G:i" }} {% else %} Não possui {% endif %}</td>
                             <td>{{ agendamento.isEncerrado }}</td>
                             <td>{{ agendamento.isReagendado }}</td>
                             <td>{{ agendamento.cadastradoPor }}</td>

@@ -21,6 +21,7 @@ class Agendamento(models.Model):
     cadastradoPor = models.CharField(_("Cadastrado por"),max_length=30)
     informServico = models.CharField(_("Informações do Serviço"),max_length=240)
     solucao = models.CharField(_("Solução"),max_length=200, default='A inserir')
+    encSla = models.DateTimeField(_("Final do SLA"), blank=True, null=True)
     valor = models.DecimalField(max_digits=10,decimal_places=2)
     tipoPessoa = models.CharField(_("Tipo de Pessoa"),max_length=3,choices=PersonType.choices,default=PersonType.FISICA)
     isEncerrado = models.CharField(_("Agendamento Encerrado?"),max_length=3,choices=STATUS, default='Não')

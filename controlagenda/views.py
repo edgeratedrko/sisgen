@@ -45,9 +45,10 @@ def deleteAgendamento(request, id):
 def infoDashboard(request):
     agendamentosDone = Agendamento.objects.filter(isEncerrado='Sim').count()
     agendamentosDoing = Agendamento.objects.filter(isEncerrado='Não').count()
+    contSla = Agendamento.objects.filter(isEncerrado='Não').exclude(encSla__isnull=True).count()
     latestAgs = Agendamento.objects.filter(isEncerrado='Não').order_by('-data')[: 4]
 
-    return render(request, 'homepage.html', {'agentamentosdone': agendamentosDone, 'agendamentosdoing': agendamentosDoing, 'latestags': latestAgs})
+    return render(request, 'homepage.html', {'agentamentosdone': agendamentosDone, 'agendamentosdoing': agendamentosDoing, 'latestags': latestAgs, 'contslas': contSla})
 
 @login_required()
 def searchByDate(request):
@@ -60,3 +61,8 @@ def searchByDate(request):
         somaTotal = Agendamento.objects.aggregate(Sum('valor'))
 
     return render(request, 'relatorios.html', {'financeiro': financeiro, 'somatotal': somaTotal})
+
+def relatSla(request):
+     slaAtivos = Agendamento.objects.filter(isEncerrado='Não').exclude(encSla__isnull=True)
+
+     return render(request, 'relatsla.html', {'slaativos': slaAtivos})

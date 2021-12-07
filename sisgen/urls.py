@@ -19,7 +19,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from controluser.views import redirectLogin, returnLogedUser
-from controlagenda.views import infoDashboard, searchByDate
+from controlagenda.views import infoDashboard, searchByDate, relatSla
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,5 +31,6 @@ urlpatterns = [
     path('home/', infoDashboard, name='infoDashboard'),
     path('relatorios/', searchByDate, name='searchByDate'),
     path('profile/', returnLogedUser, name='returnLogedUser'),
+    path('relatslas/', relatSla, name='relatSla'),
 ]
 
